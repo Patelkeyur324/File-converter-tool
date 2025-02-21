@@ -9,13 +9,26 @@ exports.register = async (req, res) => {
     }
 
     try {
+
+          // Check if the username or email is already registered
+          const existingUser = await User.findOne({
+            $or: [{ username }, { email }]
+        });
+
+        if (existingUser) {
+            return res.status(409).json({ message: 'Username or email is already registered.' });
+        };
+
         const newUser = new User({ 
             username, 
             fullname, 
             email, 
             password  // Password will be hashed in the pre-save hook
         });
+    
         await newUser.save();
+        console.log(newUser,"new user");
+        
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });

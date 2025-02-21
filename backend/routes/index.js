@@ -14,14 +14,11 @@ const mergePdfController = require('../controllers/mergePdf');
 const { convertPdfToPptx } = require('../controllers/pdftopptx');
 const { processImage } = require('../controllers/Imagetodocx');
 const authController = require('../controllers/authController');
-
+const sharp = require('sharp');
 
 // const { removeTempDirectory } = require('../controllers/fileController');
 
-
-
 const router = express.Router();
-
 
 // router.delete('/remove-temp-dir', removeTempDirectory);
 
@@ -43,12 +40,40 @@ const upload = multer({
 
 router.post('/register', authController.register); 
 
-
-
 // Login route
 router.post('/login', authController.login);
 
+//-----------------------------------          *            ---------------------------------------------
+// Image compression route
+router.post('/compress-image', upload.single('image'), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ message: 'No image file uploaded.' });
+        }
 
+        // Path to save compressed image
+        const outputPath = `uploads/compressed-${req.file.filename}`;
+
+        // Compress the image using sharp
+        await sharp(req.file.path)
+            .resize({ width: 800 }) // Resize to 800px width (height auto-adjusts)
+            .jpeg({ quality: 70 }) // Set quality to 70% (adjustable)
+            .toFile(outputPath);
+
+        // Delete original uploaded file to save space
+        fs.unlinkSync(req.file.path);
+
+        res.status(200).json({
+            message: 'Image compressed successfully!',
+            file: outputPath, // Send the compressed image path
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error compressing the image', error: err.message });
+    }
+});
+// ---------------------------------         *          ---------------------------------------------
 // Image to PDF route
 router.post('/img_to_pdf', upload.array('images', 100), pdfController.createPdf);
 

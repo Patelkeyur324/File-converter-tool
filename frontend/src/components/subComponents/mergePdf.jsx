@@ -94,16 +94,21 @@ function MergePdf() {
       </div>
 
       {/* Text section below the upload form */}
-      <div className="max-w-3xl mx-auto mt-8 text-center text-gray-600">
-        <h2 className="text-xl font-semibold mb-4">What is PDF Merging?</h2>
-        <p className="mb-4">
+      <div className="max-w-3xl mx-auto mt-8 text-center text-gray-600 bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">What is PDF Merging?</h2>
+        <p className="text-lg mb-4 px-4 sm:px-8">
           PDF merging allows you to combine multiple PDF files into a single document, which can make it easier to organize
           and share your content. Whether you're merging reports, invoices, or images, this tool simplifies the process.
         </p>
-        <p className="mb-4">
+        <p className="text-lg mb-6 px-4 sm:px-8">
           Just upload your files, click "Merge PDFs," and your new merged PDF will be ready for download within moments.
           This tool supports multiple PDF files and ensures a quick and secure conversion process.
         </p>
+        <div className="mt-6">
+          <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">
+            Try Merging PDFs
+          </button>
+        </div>
       </div>
     </>
   );

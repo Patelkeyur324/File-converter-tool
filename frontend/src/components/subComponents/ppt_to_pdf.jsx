@@ -14,20 +14,32 @@ function PptToPdf() {
             alert('Please select a file first!');
             return;
         }
-
         setLoading(true); // Start loading
 
         const formData = new FormData();
+               
         formData.append('pptFile', file);
-
+           // Debugging: Check what is inside formData
+    for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+    }
+        
         try {
+            console.log("1part",file);
+
+            
             const response = await axios.post('http://localhost:5000/api/ppttopdf', formData, {
+                // headers: { 'Content-Type': 'multipart/form-data' },
                 responseType: 'blob',
-            });
+            }
+        );
+        console.log("dfs");
 
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
+            console.log("part 2");
+            
             link.setAttribute('download', `${file.name}.pdf`);
             document.body.appendChild(link);
             link.click();

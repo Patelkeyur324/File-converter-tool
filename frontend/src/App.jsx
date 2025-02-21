@@ -17,6 +17,7 @@ import PdfToPptx from './components/subComponents/pdfToPptx.jsx'
 import Imgtodocx from './components/subComponents/Imgtodocx.jsx'
 import Login from './components/Login.jsx'
 import Register from './components/Register.jsx';
+import ImageCompressor from './components/ImageCompressor.jsx';
 
 
 
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='/Edit' element={<Edit/>}/>
           <Route path='/Sign' element={<Sign/>}/>
           <Route path='/mergePdf' element={<Merge/>}/>
+          <Route path="/compressor" element={<ImageCompressor />} />
           <Route path='/img_to_pdf' element={<Imgtopdf/>}/>
           <Route path='/ppt_to_pdf' element={<Ppttopdf/>}/>
           <Route path='/PdfToImages' element={<PdftoImg/>}/>

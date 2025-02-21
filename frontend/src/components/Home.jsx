@@ -72,7 +72,7 @@ const Home = () => {
         scrollTop(value) {
           return arguments.length
             ? scroll.scrollTo(value, 0, 0)
-            : scroll.scroll.instance.scroll.y;
+            : scroll.scrollTo.instance.scroll.y;
         },
         getBoundingClientRect() {
           return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
@@ -105,8 +105,8 @@ const Home = () => {
         });
       });
 
-      ScrollTrigger.addEventListener('refresh', () => scroll.update());
-      ScrollTrigger.refresh();
+      // ScrollTrigger.addEventListener('refresh', () => scroll.update());
+      // ScrollTrigger.refresh();
 
       return () => {
         if (scroll) scroll.destroy();
@@ -115,20 +115,20 @@ const Home = () => {
   }, []);
 
   return (
-    <div id="main-container" data-scroll-container className="bg-white px-4 sm:px-6 lg:px-8">
+    <div id="main-container" data-scroll-container className="bg-white px-4 sm:px-6 lg:px-8 " >
       {/* Main Section */}
       <div className="color-section flex flex-col lg:flex-row justify-center items-center lg:space-x-8">
         <div className="lg:w-1/2 text-center lg:text-left">
-          <h2 className="hvr cursor-pointer text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900">
+          <h2 className="hvr cursor-pointer text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 ">
             Convert All Your Files With
           </h2>
           <span className="hvr cursor-pointer text-2xl sm:text-3xl lg:text-4xl font-extrabold text-purple-600">
             One Click
           </span>
-          <p className="mt-4 text-base sm:text-lg text-gray-500">
+          <p className="mt-4 text-base sm:text-lg text-gray-500 ">
             Simply upload your files and click the convert button.
           </p>
-          <a href="#" className="mt-8 inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-900 hover:bg-gray-700">
+          <a href="#" className="mt-8 inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-900 hover:bg-red-900">
             Try it for free
           </a>
         </div>

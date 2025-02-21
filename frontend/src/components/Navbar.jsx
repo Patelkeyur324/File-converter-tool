@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import gsap from 'gsap';
-import { Power2 } from 'gsap/all';
+import { Sun, Moon } from 'lucide-react';
+
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
 
   useEffect(() => {
     // GSAP animation for navigation links
@@ -21,6 +22,7 @@ const Navbar = () => {
       setIsAuthenticated(true); // Set the user as authenticated
     }
   }, []);
+
 
   // Function to log out the user
   const handleLogout = () => {
@@ -97,6 +99,11 @@ const Navbar = () => {
                 >
                   Merge PDF
                 </Link>
+
+                <Link to="/compressor" className="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                  Image Compressor
+                </Link>
+
                 <Link
                   to="/ContactPage"
                   className="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 text-sm font-medium"
@@ -106,6 +113,7 @@ const Navbar = () => {
               </div>
             ) : null}
           </div>
+          
 
           {/* Authentication Buttons at the End of Navbar */}
           <div className="flex items-center space-x-4">
@@ -192,6 +200,7 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
+            
             <div className="pt-2 pb-3 space-y-1">
               <Link
                 to="/signup"
